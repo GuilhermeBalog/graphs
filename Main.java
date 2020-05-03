@@ -1,13 +1,15 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 
 public class Main {
     public static void main(String[] args) {
-        testCC();
+        testEp();
     }
 
     public static void testSearch(){
@@ -56,8 +58,50 @@ public class Main {
         }
     }
 
+    public static void testEp(){
+        Graph myGraph = Graphs.makeGraphFromFile("./tinyG.txt");
+        System.out.print("Fazendo Busca... ");
+        ConnectedComponents cc = new ConnectedComponents(myGraph);
+
+        int numberOfComponents = cc.count();
+        System.out.println("ok!");
+
+        System.out.print("Criando componentes separados... ");
+        List<Integer>[] components = (LinkedList<Integer>[]) new LinkedList[numberOfComponents];
+        for(int i = 0; i < numberOfComponents; i++){
+            components[i] = new LinkedList<Integer>();
+        }
+        for(int v = 0; v < myGraph.V(); v++){
+            components[cc.id(v)].add(v);
+        }
+        System.out.println("ok!");
+
+        System.out.print("Criando mapa... ");
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        for(int i = 0; i < numberOfComponents; i++){
+            int size = components[i].size();
+
+            if(map.containsKey(size)){
+                int currentValue = map.get(size);
+                map.put(size, ++currentValue);
+            } else {
+                map.put(size, 1);
+            }
+        }
+        System.out.println("ok!\n");
+
+        System.out.println("Resultado:");
+        System.out.println(numberOfComponents + " componentes:\n");
+
+        for(int size: map.keySet()){
+            int n = map.get(size);
+            System.out.println(n + " componentes com " + size + " vertices");
+        }
+    }
+
     public static void testCC(){
-        Graph myGraph = Graphs.makeGraphFromFile("out.txt");
+        Graph myGraph = Graphs.makeGraphFromFile("./tinyG.txt");
         ConnectedComponents cc = new ConnectedComponents(myGraph);
 
         int numberOfComponents = cc.count();
@@ -71,7 +115,7 @@ public class Main {
             components[cc.id(v)].add(v);
         }
         for(int i = 0; i < numberOfComponents; i++){
-            System.out.print("component " + i + ": ");
+            System.out.print("component " + i + ": " + "(" + components[i].size() + " vertices): ");
             for(int v: components[i]){
                 System.out.print(v + " ");
             }
@@ -79,8 +123,12 @@ public class Main {
         }
     }
 
-    public static void testEp(){
-        System.out.println();
+    public static void testMap(){
+        Map<Integer, Integer> map = new HashMap<>();
+        // map.put(0, 2);
+        System.out.println(map.get(0));
+        map.put(0, 1);
+        System.out.println(map.get(0));
     }
 
     public static void minusOne(){
