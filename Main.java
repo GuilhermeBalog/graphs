@@ -10,19 +10,8 @@ public class Main {
         testCC();
     }
 
-    public static Graph graphy(String filepath){
-        File file = new File(filepath);
-
-        try(Scanner sc = new Scanner(file)){
-            return new Balograph(sc);
-        } catch(IOException error){
-            error.printStackTrace();
-            return null;
-        }
-    }
-
     public static void testSearch(){
-        Graph myGraph = Main.graphy("./tinyG.txt");
+        Graph myGraph = Graphs.makeGraphFromFile("./tinyG.txt");
 
         DepthFirstSearch search = new DepthFirstSearch(myGraph, 5);
         System.out.println(myGraph);
@@ -41,7 +30,7 @@ public class Main {
     }
 
     public static void testPaths(){
-        Graph G = Main.graphy("./tinyG.txt");
+        Graph G = Graphs.makeGraphFromFile("./tinyG.txt");
         int s = 9;
 
         DepthFirstPaths searchFromS = new DepthFirstPaths(G, s);
@@ -68,7 +57,7 @@ public class Main {
     }
 
     public static void testCC(){
-        Graph myGraph = graphy("out.txt");
+        Graph myGraph = Graphs.makeGraphFromFile("out.txt");
         ConnectedComponents cc = new ConnectedComponents(myGraph);
 
         int numberOfComponents = cc.count();

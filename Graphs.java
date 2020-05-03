@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Graphs {
     /**
      * Compute the degree of v. Algothms, 4th Edition, pg. 523
@@ -43,5 +47,16 @@ public class Graphs {
                 if(v == w) count++;
 
         return count / 2;
+    }
+
+    public static Graph makeGraphFromFile(String filepath){
+        File file = new File(filepath);
+
+        try(Scanner sc = new Scanner(file)){
+            return new Balograph(sc);
+        } catch(IOException error){
+            error.printStackTrace();
+            return null;
+        }
     }
 }

@@ -23,6 +23,7 @@ public class Balograph implements Graph {
             int w = sc.nextInt();
             this.addEdge(v, w);
         }
+        sc.close();
     }
 
     public int V(){ 
