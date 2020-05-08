@@ -8,11 +8,11 @@ import java.util.Scanner;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         testEp();
     }
 
-    public static void testSearch(){
+    public static void testSearch() throws IOException{
         Graph myGraph = Graphs.makeGraphFromFile("./tinyG.txt");
 
         DepthFirstSearch search = new DepthFirstSearch(myGraph, 5);
@@ -31,7 +31,7 @@ public class Main {
         System.out.println("connected");
     }
 
-    public static void testPaths(){
+    public static void testPaths() throws IOException{
         Graph G = Graphs.makeGraphFromFile("./tinyG.txt");
         int s = 9;
 
@@ -58,7 +58,7 @@ public class Main {
         }
     }
 
-    public static void testEp(){
+    public static void testEp() throws IOException{
         Graph myGraph = Graphs.makeGraphFromFile("./tinyG.txt");
         System.out.print("Fazendo Busca... ");
         ConnectedComponents cc = new ConnectedComponents(myGraph);
@@ -100,7 +100,7 @@ public class Main {
         }
     }
 
-    public static void testCC(){
+    public static void testCC() throws IOException{
         Graph myGraph = Graphs.makeGraphFromFile("./tinyG.txt");
         ConnectedComponents cc = new ConnectedComponents(myGraph);
 

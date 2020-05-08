@@ -49,14 +49,10 @@ public class Graphs {
         return count / 2;
     }
 
-    public static Graph makeGraphFromFile(String filepath){
+    public static Graph makeGraphFromFile(String filepath) throws IOException{
         File file = new File(filepath);
 
-        try(Scanner sc = new Scanner(file)){
-            return new Balograph(sc);
-        } catch(IOException error){
-            error.printStackTrace();
-            return null;
-        }
+        Scanner sc = new Scanner(file);
+        return new Balograph(sc);
     }
 }
