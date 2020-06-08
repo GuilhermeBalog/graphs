@@ -1,3 +1,5 @@
+package graphs;
+
 import java.util.*;
 
 public class Balograph implements Graph {

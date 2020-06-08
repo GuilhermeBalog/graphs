@@ -1,3 +1,4 @@
+package graphs;
 
 public class DepthFirstSearch {
     private boolean[] marked;

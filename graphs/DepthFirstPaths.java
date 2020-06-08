@@ -1,3 +1,5 @@
+package graphs;
+
 import java.util.Stack;
 
 public class DepthFirstPaths{
