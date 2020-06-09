@@ -15,8 +15,8 @@ public class DepthFirstOrder {
         pre         = new LinkedList<Integer>();
         post        = new LinkedList<Integer>();
         reversePost = new Stack<Integer>();
-
         marked      = new boolean[G.V()];
+        
         for(int v = 0; v < G.V(); v++){
             if(!marked[v]) dfs(G, v);
         }
