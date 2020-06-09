@@ -9,6 +9,13 @@ public class DepthFirstSearch {
         dfs(G, s);
     }
 
+    public DepthFirstSearch(Graph G, Iterable<Integer> sources){
+        this.marked = new boolean[G.V()];
+        for(int s : sources){
+            if(!marked[s]) dfs(G, s);
+        }
+    }
+
     private void dfs(Graph G, int v){
         this.marked[v] = true;
         count++;

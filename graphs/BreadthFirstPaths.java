@@ -4,12 +4,12 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class BreadthFirstSearch {
+public class BreadthFirstPaths {
     private boolean[] marked;
     private int[] edgeTo;
     private final int s;
 
-    public BreadthFirstSearch(Graph G, int s){
+    public BreadthFirstPaths(Graph G, int s){
         this.marked = new boolean[G.V()];
         this.edgeTo = new int[G.V()];
         this.s = s;

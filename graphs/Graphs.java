@@ -57,4 +57,11 @@ public class Graphs {
         Scanner sc = new Scanner(file);
         return new Balograph(sc);
     }
+
+    public static Graph makeDigraphFromFile(String filepath) throws IOException{
+        File file = new File(filepath);
+        Scanner sc = new Scanner(file);
+        
+        return new MyDigraph(sc);
+    }
 }

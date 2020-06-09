@@ -11,9 +11,39 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException{
-        // testEp();
-        // minusOne();
-        testCC();
+        dirDfs(args);
+    }
+
+    public static void dirDfs(String[] args){
+        Scanner sc = null;
+
+        try{
+            File tinyDG = new File("res/tinyDG.txt");
+            sc = new Scanner(tinyDG);
+
+            Graph myGraph = new MyDigraph(sc);
+            LinkedList<Integer> sources = new LinkedList<>();
+
+            for(int i = 0; i < args.length; i++){
+                sources.add(Integer.parseInt(args[i]));
+            }
+
+            DepthFirstSearch reachable = new DepthFirstSearch(myGraph, sources);
+
+            for(int v = 0; v < myGraph.V(); v++){
+                if(reachable.marked(v)){
+                    System.out.print(v + " ");
+                }
+            }
+            System.out.println();
+
+        } catch(IOException e){
+            System.out.println("Não foi possível localizar o arquivo");
+            e.printStackTrace();
+        } finally {
+            sc.close();
+        }
+        
     }
 
     public static void testSearch() throws IOException{
