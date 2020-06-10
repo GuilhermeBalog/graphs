@@ -5,13 +5,56 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
 
 public class Main {
     public static void main(String[] args) throws IOException{
-        dirDfs(args);
+        mst();
+    }
+
+    public static void mst(){
+        Scanner sc = null;
+        
+        try{
+            File file = new File("res/tinyEWG.txt");
+            sc = new Scanner(file);
+            sc.useLocale(Locale.ENGLISH);
+
+            EdgeWeightedGraph ewg = new EdgeWeightedGraph(sc);
+
+            System.out.println("\nLazy Prim MST:");
+            IMST mst = new LazyPrimMST(ewg);
+            for(Edge e : mst.edges())
+                System.out.println(e);
+
+            System.out.println("Peso: " + mst.weight());
+            System.out.println();
+
+            System.out.println("Eager Prim MST:");
+            mst = new PrimMST(ewg);
+            for(Edge e : mst.edges())
+                System.out.println(e);
+                
+            System.out.println("Peso: " + mst.weight());
+            System.out.println();
+
+            System.out.println("Kruskal MST");
+            mst = new KruskalMST(ewg);
+            for(Edge e : mst.edges())
+                System.out.println(e);
+                
+            System.out.println("Peso: " + mst.weight());
+            System.out.println();
+
+        } catch(IOException e){
+            System.out.println("Não foi possível localizar o arquivo");
+            e.printStackTrace();
+        } finally {
+            sc.close();
+        }
     }
 
     public static void dirDfs(String[] args){

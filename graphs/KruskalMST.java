@@ -9,7 +9,7 @@ public class KruskalMST implements IMST {
 
     public KruskalMST(EdgeWeightedGraph G){
         mst = new LinkedList<>();
-        MinPQ<Edge> pq = new MinPQ<Edge>(G.E());
+        MinPQ<Edge> pq = new MinPQ<Edge>(G.edgesArray());
         UF uf = new UF(G.V());
 
         while(!pq.isEmpty() && mst.size() < G.V() - 1){

@@ -68,6 +68,20 @@ public class EdgeWeightedGraph {
         return edges;
     }
 
+    public Edge[] edgesArray(){
+        Set<Edge> edges = new TreeSet<>();
+
+        for(int v = 0; v < V; v++){
+            for(Edge e : adj[v]){
+                edges.add(e);
+            }
+        }
+
+        Edge[] a = new Edge[edges.size()];
+
+        return edges.toArray(a);
+    }
+
     public String toString(){
         String s = this.V() + " vertices, " + this.E() + " edges\n";
         for(int v = 0; v < this.V(); v++){
