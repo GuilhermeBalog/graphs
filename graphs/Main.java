@@ -12,7 +12,36 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException{
-        mst();
+        sp();
+    }
+
+    public static void sp(){
+        Scanner sc = null;
+        
+        try{
+            File file = new File("res/tinyEWD.txt");
+            sc = new Scanner(file);
+            sc.useLocale(Locale.ENGLISH);
+
+            EdgeWeightedDigraph G = new EdgeWeightedDigraph(sc);
+            int s = 0;
+            ShortestPaths sp = new DijkstraSP(G, s);
+
+            for(int t = 0; t < G.V(); t++){
+                System.out.print(s + " to " + t);
+                System.out.printf(" (%4.2f): ", sp.distTo(t));
+                if(sp.hasPathTo(t))
+                    for(DirectedEdge e: sp.pathTo(t))
+                        System.out.print(e + " ");
+                System.out.println();
+            }
+
+        } catch(IOException e){
+            System.out.println("Não foi possível localizar o arquivo");
+            e.printStackTrace();
+        } finally {
+            sc.close();
+        }
     }
 
     public static void mst(){

@@ -33,6 +33,6 @@ public class DirectedEdge implements Comparable<DirectedEdge>{
     }
 
     public String toString(){
-        return String.format("%d-%d (%.2f)", v, w, weight);
+        return String.format("%d->%d %.2f ", v, w, weight);
     }
 }
