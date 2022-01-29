@@ -15,6 +15,33 @@ public class Main {
         sp();
     }
 
+    public static void ordemTopologicaSI() {
+        Scanner sc = null;
+        
+        try{
+            File file = new File("res/gradeSI.txt");
+            sc = new Scanner(file);
+            sc.useLocale(Locale.ENGLISH);
+
+            // EdgeWeightedDigraph G = new EdgeWeightedDigraph(sc);
+            // int s = 0;
+            // ShortestPaths sp = new DijkstraSP(G, s);
+
+            Digraph G = new MyDigraph(sc);
+            Topological top = new Topological(G);
+
+            
+            for (int v : top.order())
+                System.out.println(v);
+
+        } catch(IOException e){
+            System.out.println("Não foi possível localizar o arquivo");
+            e.printStackTrace();
+        } finally {
+            sc.close();
+        }
+    }
+
     public static void sp(){
         Scanner sc = null;
         
